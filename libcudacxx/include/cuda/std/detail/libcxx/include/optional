@@ -162,7 +162,6 @@ template<class T>
 #include "__concepts/__concept_macros.h"
 #ifndef __cuda_std__
 #include <__config>
-#include <new>
 #include <stdexcept>
 #endif // __cuda_std__
 
@@ -192,6 +191,7 @@ template<class T>
 #include "__verbose_abort"
 #include "cstdlib"
 #include "initializer_list"
+#include "new"
 #include "version"
 
 // standard-mandated includes
