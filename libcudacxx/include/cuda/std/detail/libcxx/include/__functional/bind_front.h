@@ -49,7 +49,7 @@ struct __bind_front_op {
 template <class _Fn, class ..._BoundArgs>
 struct __bind_front_t : __perfect_forward<__bind_front_op, _Fn, _BoundArgs...> {
     using __base = __perfect_forward<__bind_front_op, _Fn, _BoundArgs...>;
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) // nvbug 3961621
     constexpr __bind_front_t() noexcept = default;
 
     template<class... _Args>

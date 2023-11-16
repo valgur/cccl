@@ -370,7 +370,7 @@ struct __expected_storage : __expected_destruct<_Tp, _Err>
   using __base = __expected_destruct<_Tp, _Err>;
 
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_storage() noexcept = default;
 
@@ -464,7 +464,7 @@ struct __expected_copy : __expected_storage<_Tp, _Err>
 {
   using __base = __expected_storage<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_copy() noexcept = default;
 
@@ -484,7 +484,7 @@ struct __expected_copy<_Tp, _Err, false> : __expected_storage<_Tp, _Err>
   using __base = __expected_storage<_Tp, _Err>;
 
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -522,7 +522,7 @@ struct __expected_move : __expected_copy<_Tp, _Err>
 {
   using __base = __expected_copy<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_move() noexcept = default;
 
@@ -541,7 +541,7 @@ struct __expected_move<_Tp, _Err, false> : __expected_copy<_Tp, _Err>
 {
   using __base = __expected_copy<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -583,7 +583,7 @@ struct __expected_copy_assign : __expected_move<_Tp, _Err>
 {
   using __base = __expected_move<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_copy_assign() noexcept = default;
 
@@ -602,7 +602,7 @@ struct __expected_copy_assign<_Tp, _Err, false> : __expected_move<_Tp, _Err>
 {
   using __base = __expected_move<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -652,7 +652,7 @@ struct __expected_move_assign : __expected_copy_assign<_Tp, _Err>
 {
   using __base = __expected_copy_assign<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_move_assign() noexcept = default;
 
@@ -671,7 +671,7 @@ struct __expected_move_assign<_Tp, _Err, false> : __expected_copy_assign<_Tp, _E
 {
   using __base = __expected_copy_assign<_Tp, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -855,7 +855,7 @@ struct __expected_storage<void, _Err> : __expected_destruct<void, _Err>
 {
   using __base = __expected_destruct<void, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   constexpr __expected_storage() noexcept = default;
 
@@ -883,7 +883,7 @@ struct __expected_copy<void, _Err, false> : __expected_storage<void, _Err>
 {
   using __base = __expected_storage<void, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -916,7 +916,7 @@ struct __expected_move<void, _Err, false> : __expected_copy<void, _Err>
 {
   using __base = __expected_copy<void, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -949,7 +949,7 @@ struct __expected_copy_assign<void, _Err, false> : __expected_move<void, _Err>
 {
   using __base = __expected_move<void, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
@@ -991,7 +991,7 @@ struct __expected_move_assign<void, _Err, false> : __expected_copy_assign<void, 
 {
   using __base = __expected_copy_assign<void, _Err>;
 // nvbug3961621
-#if defined(_LIBCUDACXX_COMPILER_NVRTC)  \
+#if (defined(_LIBCUDACXX_CUDACC_BELOW_12_3) && defined(_LIBCUDACXX_COMPILER_NVRTC)) \
  || (defined(_LIBCUDACXX_CUDACC_BELOW_11_3) && defined(_LIBCUDACXX_COMPILER_CLANG))
   template<class... _Args, __enable_if_t<_LIBCUDACXX_TRAIT(is_constructible, __base, _Args...), int> = 0>
    _LIBCUDACXX_INLINE_VISIBILITY constexpr
