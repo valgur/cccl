@@ -1,21 +1,3 @@
-#!/usr/bin/env bash
-
-#this creates a set of tests, that ensures, that all itnernal headers can be build independently
-
-set -e
-
-internal_headers=$(find ../../include -path "*cuda/std/detail/libcxx/include/__*/*" -not -path "*/__cuda/*")
-
-cd ../../test/libcxx/selftest/internal_headers
-
-for f in $internal_headers
-do
-    short_path=${f##*../include/}
-    test_name=${f##*include/}
-    test_name=${test_name%.h}.pass.cpp
-
-    mkdir -p -- "${test_name%/*}"
-    cat > $test_name << EOL
 //===----------------------------------------------------------------------===//
 //
 // Part of libcu++, the C++ Standard Library for your entire system,
@@ -25,10 +7,6 @@ do
 // SPDX-FileCopyrightText: Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES.
 //
 //===----------------------------------------------------------------------===//
-
 #include <cuda/std/version>
-#include <$short_path>
-
+#include <cuda/std/detail/libcxx/include/__iterator/advance.h>
 int main(int, char**) { return 0; }
-EOL
-done
