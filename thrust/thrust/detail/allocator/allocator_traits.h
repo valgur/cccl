@@ -29,6 +29,7 @@
 #elif defined(_CCCL_IMPLICIT_SYSTEM_HEADER_MSVC)
 #  pragma system_header
 #endif // no system header
+
 #include <thrust/detail/type_traits/pointer_traits.h>
 #include <thrust/detail/type_traits/has_nested_type.h>
 #include <thrust/detail/type_traits/has_member_function.h>
@@ -92,6 +93,10 @@ THRUST_SPECIALIZE_DEPRECATED(has_pointer)
 THRUST_SPECIALIZE_DEPRECATED(has_const_pointer)
 THRUST_SPECIALIZE_DEPRECATED(has_reference)
 THRUST_SPECIALIZE_DEPRECATED(has_const_reference)
+
+#if defined(_CCCL_COMPILER_MSVC_2017)
+THRUST_SPECIALIZE_DEPRECATED(has_size_type)
+#endif // _CCCL_COMPILER_MSVC_2017
 
 #undef THRUST_SPECIALIZE_DEPRECATED
 
